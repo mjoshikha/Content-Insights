@@ -188,12 +188,46 @@ def analyze_content(urls):
 
     return pd.DataFrame(data)
 
+features_data = {
+    "Feature": [
+        "Content Quality Score",
+        "Relevance Score",
+        "Word Recommendation for Meta Title",
+        "Readability Score",
+        "Hard-to-read Sentences",
+        "Avg. Keyword Density Score",
+        "Each Keyword Density Score",
+        "Word Presence Check Meta Title",
+        "Word Presence Check Meta Description",
+        "Word Presence Check Content"
+    ],
+    "Description": [
+        "This score reflects the overall quality of the content on the webpage. It's calculated based on three factors: Keyword Density Score, Relevance Score, and Readability Score. These scores are then aggregated to get the content quality score.",
+        "The relevance score reflects how closely the content matches the provided keywords. A score above 8 is acceptable.",
+        "This column provides a list of suggested words that are present in the content and could potentially be included in the meta title to improve relevance.",
+        "The Flesch Reading Ease score indicates how easy or difficult it is to read the content. Higher scores indicate easier readability. A score above 60 is acceptable.",
+        "This column contains sentences from the content that have a readability score below 50, indicating that they are hard to read.",
+        "The average keyword density score across all keywords present in the content. A score above 2 is acceptable.",
+        "This column provides keyword density scores for each keyword present in the meta keywords.",
+        "This column indicates words that are present in the meta title but not in the meta description or content, along with the count.",
+        "This column indicates words that are present in the meta description but not in the meta keywords or content, along with the count.",
+        "This column indicates keywords present in the content but not in the meta keywords or meta title, along with the count."
+    ]
+}
+
+# Create a DataFrame
+features_df = pd.DataFrame(features_data)
+
 # Streamlit app
 def main():
     st.set_page_config(page_title="SEO NEXUS - Content Insights", page_icon=":bar_chart:", layout="wide")
     
     st.title("SEO NEXUS - Content Insights")
     st.write("Get insights into your content's SEO performance")
+    
+    # Display the feature descriptions
+    st.subheader("Feature Descriptions")
+    st.dataframe(features_df)
 
     urls_input = st.text_area("Enter URLs (one per line)", height=150)
 
