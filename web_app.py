@@ -221,27 +221,7 @@ features_df = pd.DataFrame(features_data)
 # Streamlit app
 def main():
     st.set_page_config(page_title="SEO NEXUS - Content Insights", page_icon=":bar_chart:", layout="wide")
-
-    # Inject custom CSS for dark theme
-    dark_theme = """
-    <style>
-    body {
-        color: white;
-        background-color: #1E1E1E;
-    }
-    .st-bq {
-        color: white;
-    }
-    .st-b8 {
-        color: white;
-    }
-    .st-dg {
-        color: white;
-    }
-    </style>
-    """
-    st.markdown(dark_theme, unsafe_allow_html=True)
-
+    
     # Header
     st.header("Welcome to SEO NEXUS - Content Insights")
     st.write("Get insights into your content's SEO performance")
