@@ -222,7 +222,8 @@ features_df = pd.DataFrame(features_data)
 def main():
     st.set_page_config(page_title="SEO NEXUS - Content Insights", page_icon=":bar_chart:", layout="wide")
     
-    st.title("SEO NEXUS - Content Insights")
+    # Header
+    st.header("Welcome to SEO NEXUS - Content Insights")
     st.write("Get insights into your content's SEO performance")
 
     urls_input = st.text_area("Enter URLs (one per line)", height=150)
