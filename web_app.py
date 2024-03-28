@@ -218,17 +218,12 @@ features_data = {
 # Create a DataFrame
 features_df = pd.DataFrame(features_data)
 
+# Streamlit app
 def main():
     st.set_page_config(page_title="SEO NEXUS - Content Insights", page_icon=":bar_chart:", layout="wide")
     
     st.title("SEO NEXUS - Content Insights")
     st.write("Get insights into your content's SEO performance")
-
-    # Display feature descriptions
-    st.markdown("### Feature Descriptions")
-    for index, row in features_df.iterrows():
-        st.markdown(f"**{row['Feature']}**: {row['Description']}", unsafe_allow_html=True)
-        st.write("---")  # Add a horizontal line between descriptions for better readability
 
     urls_input = st.text_area("Enter URLs (one per line)", height=150)
 
@@ -245,6 +240,12 @@ def main():
         
         st.subheader("Analysis Results")
         st.dataframe(formatted_df, height=800)
+
+        # Display feature descriptions
+        st.markdown("### Feature Descriptions")
+        for index, row in features_df.iterrows():
+            st.markdown(f"**{row['Feature']}**: {row['Description']}", unsafe_allow_html=True)
+            st.write("---")  # Add a horizontal line between descriptions for better readability
 
 if __name__ == "__main__":
     main()
