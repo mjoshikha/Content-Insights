@@ -28,7 +28,7 @@ def check_relevance_score_with_keywords(meta_description, meta_title, meta_keywo
 
     readability_score = textstat.flesch_reading_ease(page_content)
 
-    feature_names = vectorizer.get_feature_names_out()
+    feature_names = vectorizer.get_feature_names()
     word_scores = list(feature_names)
     sorted_word_scores = sorted(word_scores)[:20]
 
