@@ -210,28 +210,28 @@ features_data = {
         "Word Presence Check Content"
     ],
     "Description": [
-        "**Content Quality Score:** This score reflects the overall quality of the content on the webpage. It's calculated based on three factors:<br> \
+        "This score reflects the overall quality of the content on the webpage. It's calculated based on three factors:<br> \
         - Keyword Density Score: A score out of 10, indicating how well the keywords are distributed throughout the content. **If the average keyword density is greater than 2%, it gets a score of 10; otherwise, it gets 0.**<br> \
         - Relevance Score: A score out of 10, indicating how relevant the content is to the provided meta information. **If the relevance score is greater than 8, it gets a score of 10; otherwise, it gets 0.**<br> \
         - Readability Score: A score out of 10, indicating the readability of the content. **If the Flesch Reading Ease score is greater than 50, it gets a score of 10; otherwise, it gets 0. These scores are then aggregated to get the content quality score.**",
         
-        "**Relevance Score:** The relevance score reflects how closely the content matches the provided keywords. It's calculated using TF-IDF cosine similarity between the provided meta information (meta description, meta title, meta keywords) and the actual content of the webpage. **A score above 8 is acceptable.**",
+        "The relevance score reflects how closely the content matches the provided keywords. It's calculated using TF-IDF cosine similarity between the provided meta information (meta description, meta title, meta keywords) and the actual content of the webpage. **A score above 8 is acceptable.**",
         
-        "**Word Recommendation for Meta Title:** This column provides a list of suggested words that are present in the content and could potentially be included in the meta title to improve relevance.",
+        "This column provides a list of suggested words that are present in the content and could potentially be included in the meta title to improve relevance.",
         
-        "**Readability Score:** The Flesch Reading Ease score indicates how easy or difficult it is to read the content. Higher scores indicate easier readability. **A score above 60 is acceptable.**",
+        "The Flesch Reading Ease score indicates how easy or difficult it is to read the content. Higher scores indicate easier readability. **A score above 60 is acceptable.**",
         
-        "**Hard-to-read Sentences:** This column contains sentences from the content that have a readability score below 50, indicating that they are hard to read.",
+        "This column contains sentences from the content that have a readability score below 50, indicating that they are hard to read.",
         
-        "**Avg. Keyword Density Score:** The average keyword density score across all keywords present in the content. **A score above 2 is acceptable.**",
+        "The average keyword density score across all keywords present in the content. **A score above 2 is acceptable.**",
         
-        "**Each Keyword Density Score:** This column provides keyword density scores for each keyword present in the meta keywords.",
+        "This column provides keyword density scores for each keyword present in the meta keywords.",
         
-        "**Word Presence Check Meta Title:** This column indicates words that are present in the meta title but not in the meta description or content, along with the count.",
+        "This column indicates words that are present in the meta title but not in the meta description or content, along with the count.",
         
-        "**Word Presence Check Meta Description:** This column indicates words that are present in the meta description but not in the meta keywords or content, along with the count.",
+        "This column indicates words that are present in the meta description but not in the meta keywords or content, along with the count.",
         
-        "**Word Presence Check Content:** This column indicates keywords present in the content but not in the meta keywords or meta title, along with the count."
+        "This column indicates keywords present in the content but not in the meta keywords or meta title, along with the count."
     ]
 }
 
