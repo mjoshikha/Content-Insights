@@ -325,7 +325,7 @@ def main():
             "Green (Favorable)": ["Score is 30","Score >= 8", "Score >= 2", "Score >= 60"],
             "Yellow (Moderate)": ["Score is 20 or 10","6 <= Score < 8", "1 <= Score < 2 ", "50 <= Score < 60"],
             "Red (Poor)": ["Score is 0","Score < 6", "Score < 1", "Score < 50"]
-        }, index=False)
+        })
 
 if __name__ == "__main__":
     main()
