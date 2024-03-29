@@ -155,7 +155,10 @@ def analyze_content(urls):
             'Word Presence Check Meta Description': [], 'Word Presence Check Content': []}
 
     for url in urls:
-        meta_title, meta_description, meta_keywords, content = extract_content_with_headers(url)
+        try:
+            meta_title, meta_description, meta_keywords, content = extract_content_with_headers(url)
+        except Exception:
+            continue
         relevance_score, sorted_word_scores, readability_score = check_relevance_score_with_keywords(meta_description, meta_title, meta_keywords, content)
         hard_to_read_sentences = detect_hard_to_read_sentences(content)
         keyword_density, overall_keyword_density_score = check_keyword_density(meta_keywords, content)
