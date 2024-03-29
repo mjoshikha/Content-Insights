@@ -248,13 +248,14 @@ def main():
             formatted_df = format_dataframe(df)
         
         st.subheader("Analysis Results")
-        st.dataframe(formatted_df, height=800)
+        st.dataframe(formatted_df, height=400)
 
-        # Display feature descriptions
-        st.markdown("### Feature Descriptions")
-        for index, row in features_df.iterrows():
-            st.markdown(f"**{row['Feature']}**: {row['Description']}", unsafe_allow_html=True)
-            st.write("---")  # Add a horizontal line between descriptions for better readability
+    # Sidebar (Hamburger Menu)
+    st.sidebar.title("Menu")
+    st.sidebar.markdown("### Features")
+    for index, row in features_df.iterrows():
+        st.sidebar.markdown(f"**{row['Feature']}**: {row['Description']}", unsafe_allow_html=True)
+        st.sidebar.write("---")  # Add a horizontal line between descriptions for better readability
 
 if __name__ == "__main__":
     main()
