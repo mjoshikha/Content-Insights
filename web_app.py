@@ -306,7 +306,7 @@ def main():
 
     # Sidebar (Hamburger Menu)
     sidebar_option = st.sidebar.selectbox(
-        " ",
+        "Menu",
         ["Feature Explanation", "Score Explanation"]
     )
 
@@ -318,12 +318,23 @@ def main():
     
     elif sidebar_option == "Score Explanation":
         st.sidebar.subheader("Score Explanation")
-        st.sidebar.table({
+        score_explanation_df = pd.DataFrame({
             "Aspect": ["Content Quality Score", "Relevance Score", "Readability Score", "Keyword Density Score"],
-            "Green (Favorable)": ["Score is 30", "Score >= 8", "Score >= 60", "Score >=2"],
-            "Yellow (Moderate)": ["Score is 20 or 10", "6 <= Score <8", "50 <= Score < 60", "1 <= Score < 2"],
+            "Green (Favorable)": ["Score is 30", "Score >= 8", "Score >= 60", "Score >= 2"],
+            "Yellow (Moderate)": ["Score is 20 or 10", "6 <= Score < 8", "50 <= Score < 60", "1 <= Score < 2"],
             "Red (Poor)": ["Score is 0", "Score < 6", "Score < 50", "Score < 1"]
         })
+
+        # Format dataframe with colors
+        score_explanation_df = score_explanation_df.style.applymap(
+            lambda x: 'background-color: #28a745; color: white' if "Green" in x else (
+                'background-color: #ffc107; color: black' if "Yellow" in x else (
+                    'background-color: #dc3545; color: white' if "Red" in x else ''
+                )
+            )
+        ).hide_index()
+
+        st.sidebar.write(score_explanation_df)
 
 if __name__ == "__main__":
     main()
