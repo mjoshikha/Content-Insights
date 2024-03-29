@@ -312,6 +312,8 @@ def main():
 
     if sidebar_option == "Feature Explanation":
         st.sidebar.subheader("Feature Explanation")
+        st.sidebar.write("---")  # Add a horizontal line between descriptions for better readability
+
         for index, row in features_df.iterrows():
             st.sidebar.markdown(f"**{row['Feature']}**: {row['Description']}", unsafe_allow_html=True)
             st.sidebar.write("---")  # Add a horizontal line between descriptions for better readability
