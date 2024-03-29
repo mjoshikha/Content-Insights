@@ -240,8 +240,50 @@ features_df = pd.DataFrame(features_data)
 
 # Streamlit app
 def main():
-    st.set_page_config(page_title="SEO NEXUS - Content Insights", page_icon=":bar_chart:", layout="wide")
+    st.set_page_config(
+        page_title="SEO NEXUS - Content Insights",
+        page_icon=":bar_chart:",
+        layout="wide"
+    )
     
+    # Custom CSS for styling
+    st.markdown(
+        """
+        <style>
+        /* Add custom CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        .stButton>button {
+            background-color: #007bff;
+            color: white;
+        }
+        .stTextInput>div>div>input {
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+        }
+        .stDataFrame {
+            border: 1px solid #ced4da;
+        }
+        .stSelectbox>div>div>div {
+            background-color: #e9ecef;
+            color: #343a40;
+        }
+        .stSelectbox>div>div>div:hover {
+            background-color: #adb5bd;
+            color: #343a40;
+        }
+        .css-1mcyjrj {
+            background-color: #28a745 !important;
+            border-color: #28a745 !important;
+            color: #fff !important;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+        
     # Header
     st.header("Welcome to SEO NEXUS - Content Insights")
     st.write("Get insights into your content's SEO performance")
