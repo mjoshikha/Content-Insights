@@ -318,23 +318,12 @@ def main():
     
     elif sidebar_option == "Score Explanation":
         st.sidebar.subheader("Score Explanation")
-        score_explanation_df = pd.DataFrame({
-            "Aspect": ["Content Quality Score", "Relevance Score", "Readability Score", "Keyword Density Score"],
-            "Green (Favorable)": ["Score is 30", "Score >= 8", "Score >= 60", "Score >= 2"],
-            "Yellow (Moderate)": ["Score is 20 or 10", "6 <= Score < 8", "50 <= Score < 60", "1 <= Score < 2"],
-            "Red (Poor)": ["Score is 0", "Score < 6", "Score < 50", "Score < 1"]
+        st.sidebar.table({
+            "Aspect": ["Content Quality Score", "Relevance Score", "Readability Score"],
+            "Green (Favorable)": ["Score >= 8", "Score >= 8", "Score >= 60"],
+            "Yellow (Moderate)": ["6 <= Score <= 7", "6 <= Score <= 7", "50 <= Score <= 59"],
+            "Red (Poor)": ["Score < 6", "Score < 6", "Score < 50"]
         })
-
-        # Format dataframe with colors
-        score_explanation_df = score_explanation_df.style.applymap(
-            lambda x: 'background-color: #28a745; color: white' if "Green" in x else (
-                'background-color: #ffc107; color: black' if "Yellow" in x else (
-                    'background-color: #dc3545; color: white' if "Red" in x else ''
-                )
-            )
-        ).hide_index()
-
-        st.sidebar.write(score_explanation_df)
 
 if __name__ == "__main__":
     main()
