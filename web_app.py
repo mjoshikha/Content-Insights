@@ -156,6 +156,11 @@ def analyze_content(urls):
 
     for url in urls:
         meta_title, meta_description, meta_keywords, content = extract_content_with_headers(url)
+
+        # Check if any of the metadata variables are None
+        if meta_title is None or meta_description is None or meta_keywords is None:
+            continue
+        
         relevance_score, sorted_word_scores, readability_score = check_relevance_score_with_keywords(meta_description, meta_title, meta_keywords, content)
         hard_to_read_sentences = detect_hard_to_read_sentences(content)
         keyword_density, overall_keyword_density_score = check_keyword_density(meta_keywords, content)
@@ -187,6 +192,7 @@ def analyze_content(urls):
         data['Word Presence Check Content'].append(word_presence_check_content_str)
 
     return pd.DataFrame(data)
+
 
 features_data = {
     "Feature": [
