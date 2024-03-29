@@ -305,11 +305,25 @@ def main():
         st.dataframe(formatted_df, height=400)
 
     # Sidebar (Hamburger Menu)
-    st.sidebar.title("Features")
-    st.sidebar.write("---") 
-    for index, row in features_df.iterrows():
-        st.sidebar.markdown(f"**{row['Feature']}**: {row['Description']}", unsafe_allow_html=True)
-        st.sidebar.write("---")  # Add a horizontal line between descriptions for better readability
+    sidebar_option = st.sidebar.selectbox(
+        " ",
+        ["Feature Explanation", "Score Explanation"]
+    )
+
+    if sidebar_option == "Feature Explanation":
+        st.sidebar.subheader("Feature Explanation")
+        for index, row in features_df.iterrows():
+            st.sidebar.markdown(f"**{row['Feature']}**: {row['Description']}", unsafe_allow_html=True)
+            st.sidebar.write("---")  # Add a horizontal line between descriptions for better readability
+    
+    elif sidebar_option == "Score Explanation":
+        st.sidebar.subheader("Score Explanation")
+        st.sidebar.table({
+            "Aspect": ["Content Quality Score", "Relevance Score", "Readability Score", "Keyword Density Score"],
+            "Green (Favorable)": ["Score is 30", "Score >= 8", "Score >= 60", "Score >=2"],
+            "Yellow (Moderate)": ["Score is 20 or 10", "6 <= Score <8", "50 <= Score < 60", "1 <= Score < 2"],
+            "Red (Poor)": ["Score is 0", "Score < 6", "Score < 50", "Score < 1"]
+        })
 
 if __name__ == "__main__":
     main()
