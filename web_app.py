@@ -211,9 +211,9 @@ features_data = {
     ],
     "Description": [
         "This score reflects the overall quality of the content on the webpage. It's calculated based on three factors:<br> \
-        - Keyword Density Score: A score out of 10, indicating how well the keywords are distributed throughout the content. **If the average keyword density is greater than 2%, it gets a score of 10; otherwise, it gets 0.**<br> \
-        - Relevance Score: A score out of 10, indicating how relevant the content is to the provided meta information. **If the relevance score is greater than 8, it gets a score of 10; otherwise, it gets 0.**<br> \
-        - Readability Score: A score out of 10, indicating the readability of the content. **If the Flesch Reading Ease score is greater than 50, it gets a score of 10; otherwise, it gets 0. These scores are then aggregated to get the content quality score.**",
+        **-** Keyword Density Score: A score out of 10, indicating how well the keywords are distributed throughout the content. **If the average keyword density is greater than 2%, it gets a score of 10; otherwise, it gets 0.**<br> \
+        **-** Relevance Score: A score out of 10, indicating how relevant the content is to the provided meta information. **If the relevance score is greater than 8, it gets a score of 10; otherwise, it gets 0.**<br> \
+        **-** Readability Score: A score out of 10, indicating the readability of the content. **If the Flesch Reading Ease score is greater than 50, it gets a score of 10; otherwise, it gets 0. These scores are then aggregated to get the content quality score.**",
         
         "The relevance score reflects how closely the content matches the provided keywords. It's calculated using TF-IDF cosine similarity between the provided meta information (meta description, meta title, meta keywords) and the actual content of the webpage. **A score above 8 is acceptable.**",
         
