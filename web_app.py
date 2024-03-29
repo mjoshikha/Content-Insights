@@ -36,11 +36,7 @@ def check_relevance_score_with_keywords(meta_description, meta_title, meta_keywo
 
 def extract_content_with_headers(url):
     
-    headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36',
-    'Referer': 'https://www.google.com/',
-    'Origin': 'https://www.google.com/'}
-    response = requests.get(url, headers=headers,verify=False)
+    response = requests.get(url,verify=False)
 
     
     if response.status_code == 200:
