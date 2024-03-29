@@ -264,6 +264,7 @@ def main():
 
     # Sidebar (Hamburger Menu)
     st.sidebar.title("Features")
+    st.sidebar.write("---") 
     for index, row in features_df.iterrows():
         st.sidebar.markdown(f"**{row['Feature']}**: {row['Description']}", unsafe_allow_html=True)
         st.sidebar.write("---")  # Add a horizontal line between descriptions for better readability
