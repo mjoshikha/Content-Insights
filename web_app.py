@@ -289,7 +289,6 @@ def main():
         unsafe_allow_html=True
     )
         
-    # Header
     st.header("Welcome to SEO NEXUS - Content Insights")
     st.write("Get insights into your content's SEO performance")
 
@@ -304,8 +303,6 @@ def main():
 
         with st.spinner("Analyzing content..."):
             df = analyze_content(urls)
-        
-
         
         st.subheader("Analysis Results")
         if len(df) == 1:  # Check if only one URL is analyzed
