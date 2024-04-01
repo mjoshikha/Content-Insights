@@ -310,6 +310,19 @@ def main():
         
         st.subheader("Analysis Results")
         st.dataframe(formatted_df, height=400)
+        if len(df) == 1:  # Check if only one URL is analyzed
+            row = df.iloc[0]  # Get the first row of the DataFrame
+            st.write(f"**Content Quality Score:** {row['Content Quality Score']}")
+            st.write(f"**Relevance Score:** {row['Relevance Score']}")
+            st.write(f"**Word Recommendation for Meta Title:** {', '.join(row['Word Recommendation for Meta Title'])}")
+            st.write(f"**Readability Score:** {row['Readability Score']}")
+            st.write("**Top 20 Hard-to-read Sentences:**")  # Modify this line to indicate top 20 sentences
+            for i, sentence in enumerate(row['Hard-to-read Sentences'][:20]):  # Display only top 20 hard-to-read sentences
+                st.write(f"{i+1}. {sentence}")
+            st.write(f"**Avg. Keyword Density Score:** {row['Avg. Keyword Density Score']}")
+
+
+    
 
     # Sidebar (Hamburger Menu)
     sidebar_option = st.sidebar.selectbox(
