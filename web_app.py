@@ -310,18 +310,7 @@ def main():
                 for i, sentence in enumerate(row['Hard-to-read Sentences'][:10]):  # Display only top 10 hard-to-read sentences
                     st.write(f"{i+1}. {sentence}")
                 st.write(f"**Avg. Keyword Density Score:** {row['Avg. Keyword Density Score']}")
-                st.write(f"**Each Keyword Density Score:**")
-                for keyword, score in row.get('Each Keyword Density Score', []):
-                    st.write(f"- {keyword}: {score}")
-                st.write(f"**Word Presence Check Meta Title:**")
-                for word, count in row['Word Presence Check Meta Title']:
-                    st.write(f"- {word}: {count}")
-                st.write(f"**Word Presence Check Meta Description:**")
-                for word, count in row['Word Presence Check Meta Description']:
-                    st.write(f"- {word}: {count}")
-                st.write(f"**Word Presence Check Content:**")
-                for word, count in row['Word Presence Check Content']:
-                    st.write(f"- {word}: {count}")
+                
                 st.write("----")
                 st.subheader("Analysis Results (DataFrame)")
                 st.dataframe(formatted_df, height=400)
