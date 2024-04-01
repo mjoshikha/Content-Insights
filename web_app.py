@@ -89,8 +89,10 @@ def detect_hard_to_read_sentences(page_content):
     hard_to_read_sentences = []
     
     for sentence in sentences:
-        readability_score = textstat.flesch_reading_ease(sentence)
-        hard_to_read_sentences.append((sentence, readability_score))
+        # Check if the sentence has at least 10 words
+        if len(sentence.split()) >= 10:
+            readability_score = textstat.flesch_reading_ease(sentence)
+            hard_to_read_sentences.append((sentence, readability_score))
     
     # Sort the hard-to-read sentences based on their readability scores in ascending order
     hard_to_read_sentences.sort(key=lambda x: x[1])
