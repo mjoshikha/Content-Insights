@@ -297,37 +297,34 @@ def main():
             st.warning("Please enter at least one valid URL.")
             return
 
-        if len(urls) == 1:  # Display detailed explanations
-            with st.spinner("Analyzing content..."):
-                df = analyze_content(urls)
-                # Display detailed explanations for each feature in dropdowns
-                for index, row in df.iterrows():
-                    st.markdown(f"### URL: {row['URL']}")
-                    st.write(f"**Content Quality Score:** {row['Content Quality Score']}")
-                    st.write(f"**Relevance Score:** {row['Relevance Score']}")
-                    st.write(f"**Word Recommendation for Meta Title:** {', '.join(row['Word Recommendation for Meta Title'])}")
-                    st.write(f"**Readability Score:** {row['Readability Score']}")
-                    st.write(f"**Hard-to-read Sentences:**")
-                    for i, sentence in enumerate(row['Hard-to-read Sentences'][:10]):  # Display only top 10 hard-to-read sentences
-                        st.write(f"{i+1}. {sentence}")
-                    st.write(f"**Avg. Keyword Density Score:** {row['Avg. Keyword Density Score']}")
-                    st.write(f"**Each Keyword Density Score:**")
-                    for keyword, score in row['Each Keyword Density Score']:
-                        st.write(f"- {keyword}: {score}")
-                    st.write(f"**Word Presence Check Meta Title:**")
-                    for word, count in row['Word Presence Check Meta Title']:
-                        st.write(f"- {word}: {count}")
-                    st.write(f"**Word Presence Check Meta Description:**")
-                    for word, count in row['Word Presence Check Meta Description']:
-                        st.write(f"- {word}: {count}")
-                    st.write(f"**Word Presence Check Content:**")
-                    for word, count in row['Word Presence Check Content']:
-                        st.write(f"- {word}: {count}")
-                    st.write("----")
-        else:  # Display DataFrame
-            with st.spinner("Analyzing content..."):
-                df = analyze_content(urls)
-                formatted_df = format_dataframe(df)
+        with st.spinner("Analyzing content..."):
+            df = analyze_content(urls)
+            formatted_df = format_dataframe(df)
+
+            # Display detailed explanations for each feature in dropdowns
+            for index, row in df.iterrows():
+                st.subheader("URL: {row['URL']}")
+                st.write(f"**Content Quality Score:** {row['Content Quality Score']}")
+                st.write(f"**Relevance Score:** {row['Relevance Score']}")
+                st.write(f"**Word Recommendation for Meta Title:** {', '.join(row['Word Recommendation for Meta Title'])}")
+                st.write(f"**Readability Score:** {row['Readability Score']}")
+                st.write(f"**Hard-to-read Sentences:**")
+                for i, sentence in enumerate(row['Hard-to-read Sentences'][:10]):  # Display only top 10 hard-to-read sentences
+                    st.write(f"{i+1}. {sentence}")
+                st.write(f"**Avg. Keyword Density Score:** {row['Avg. Keyword Density Score']}")
+                st.write(f"**Each Keyword Density Score:**")
+                for keyword, score in row['Each Keyword Density Score']:
+                    st.write(f"- {keyword}: {score}")
+                st.write(f"**Word Presence Check Meta Title:**")
+                for word, count in row['Word Presence Check Meta Title']:
+                    st.write(f"- {word}: {count}")
+                st.write(f"**Word Presence Check Meta Description:**")
+                for word, count in row['Word Presence Check Meta Description']:
+                    st.write(f"- {word}: {count}")
+                st.write(f"**Word Presence Check Content:**")
+                for word, count in row['Word Presence Check Content']:
+                    st.write(f"- {word}: {count}")
+                st.write("----")
                 st.subheader("Analysis Results (DataFrame)")
                 st.dataframe(formatted_df, height=400)
 
