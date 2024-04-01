@@ -312,14 +312,28 @@ def main():
         st.dataframe(formatted_df, height=400)
         if len(df) == 1:  # Check if only one URL is analyzed
             row = df.iloc[0]  # Get the first row of the DataFrame
-            st.write(f"**Content Quality Score:** {row['Content Quality Score']}")
-            st.write(f"**Relevance Score:** {row['Relevance Score']}")
-            st.write(f"**Word Recommendation for Meta Title:** {', '.join(row['Word Recommendation for Meta Title'])}")
-            st.write(f"**Readability Score:** {row['Readability Score']}")
-            st.write("**Top 20 Hard-to-read Sentences:**")  # Modify this line to indicate top 20 sentences
+            
+            st.write(f"**Content Quality Score:** {row['Content Quality Score']}/30")
+            st.write("The Content Quality Score reflects the overall quality of the content on the webpage. It takes into account the distribution of keywords, relevance to provided meta information, and readability of the content. 30 score indicate better quality.")
+            
+            st.write(f"**Relevance Score:** {row['Relevance Score']}/10")
+            st.write("The Relevance Score indicates how closely the content matches the provided keywords in the meta information (meta description, meta title, meta keywords). Scores above 8 suggests better relevance.")
+            
+            st.write(f"**Word Recommendation for Meta Title:**")
+            st.write("These are the suggested words that are present in the content and could potentially be included in the meta title to improve relevance.")
+            st.write(", ".join(row['Word Recommendation for Meta Title']))
+            
+            st.write(f"**Readability Score:** {row['Readability Score']}/100")
+            st.write("The Readability Score reflects how easy or difficult it is to read the content. Scores above 60 indicate easier readability.")
+            
+            st.write("**Top 20 Hard-to-read Sentences:**")
+            st.write("Below are the top 20 sentences from the content that are identified as hard to read. Improving the readability of these sentences can enhance user experience.")
             for i, sentence in enumerate(row['Hard-to-read Sentences'][:20]):  # Display only top 20 hard-to-read sentences
                 st.write(f"{i+1}. {sentence}")
+            
             st.write(f"**Avg. Keyword Density Score:** {row['Avg. Keyword Density Score']}")
+            st.write("The Average Keyword Density Score indicates the average density of keywords across all keywords present in the content. Score above 2 suggest better keyword distribution.")
+        
 
 
     
