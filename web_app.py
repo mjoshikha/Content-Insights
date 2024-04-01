@@ -114,8 +114,9 @@ def check_keyword_density(meta_keywords, page_content):
     sorted_keyword_density = sorted(keyword_density.items(), key=lambda x: x[1], reverse=True)
     
     # Calculate overall score out of 10
-    overall_score = sum(keyword_density.values()) / (len(keyword_density))
+    overall_score = round(sum(keyword_density.values()) / len(keyword_density), 2)
     return sorted_keyword_density, overall_score
+
 
 def check_word_presence(meta_keywords, meta_title, meta_description, page_content):
     meta_keywords1 = [phrase.strip().lower() for phrase in meta_keywords.split(',')]
