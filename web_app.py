@@ -89,11 +89,16 @@ def detect_hard_to_read_sentences(page_content):
     hard_to_read_sentences = []
     
     for sentence in sentences:
-        readability_score = textstat.flesch_reading_ease(sentence)
-        if readability_score < 50:
-            hard_to_read_sentences.append(sentence)
+        # Check if the sentence has at least 10 words
+        if len(sentence.split()) >= 10:
+            readability_score = textstat.flesch_reading_ease(sentence)
+            hard_to_read_sentences.append((sentence, readability_score))
+    
+    # Sort the hard-to-read sentences based on their readability scores in ascending order
+    hard_to_read_sentences.sort(key=lambda x: x[1])
     
     return hard_to_read_sentences
+
 
 def check_keyword_density(meta_keywords, page_content):
     meta_keywords = [keyword.strip().lower() for keyword in meta_keywords.split(',')]
@@ -284,7 +289,6 @@ def main():
         unsafe_allow_html=True
     )
         
-    # Header
     st.header("Welcome to SEO NEXUS - Content Insights")
     st.write("Get insights into your content's SEO performance")
 
@@ -299,9 +303,19 @@ def main():
 
         with st.spinner("Analyzing content..."):
             df = analyze_content(urls)
-            formatted_df = format_dataframe(df)
         
         st.subheader("Analysis Results")
+        if len(df) == 1:  # Check if only one URL is analyzed
+                row = df.iloc[0]  # Get the first row of the DataFrame
+                st.write(f"**Content Quality Score:** {row['Content Quality Score']}")
+                st.write(f"**Relevance Score:** {row['Relevance Score']}")
+                st.write(f"**Word Recommendation for Meta Title:** {', '.join(row['Word Recommendation for Meta Title'])}")
+                st.write(f"**Readability Score:** {row['Readability Score']}")
+                st.write("**Hard-to-read Sentences:**")
+                for i, (sentence, _) in enumerate(row['Hard-to-read Sentences'][:20]):  
+                    st.write(f"{i+1}. {sentence}")
+                st.write(f"**Avg. Keyword Density Score:** {row['Avg. Keyword Density Score']}")
+        formatted_df = format_dataframe(df)
         st.dataframe(formatted_df, height=400)
 
     # Sidebar (Hamburger Menu)
