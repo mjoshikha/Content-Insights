@@ -90,10 +90,13 @@ def detect_hard_to_read_sentences(page_content):
     
     for sentence in sentences:
         readability_score = textstat.flesch_reading_ease(sentence)
-        if readability_score < 50:
-            hard_to_read_sentences.append(sentence)
+        hard_to_read_sentences.append((sentence, readability_score))
+    
+    # Sort the hard-to-read sentences based on their readability scores in ascending order
+    hard_to_read_sentences.sort(key=lambda x: x[1])
     
     return hard_to_read_sentences
+
 
 def check_keyword_density(meta_keywords, page_content):
     meta_keywords = [keyword.strip().lower() for keyword in meta_keywords.split(',')]
