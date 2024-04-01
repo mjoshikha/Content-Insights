@@ -311,9 +311,9 @@ def main():
                     st.write(f"{i+1}. {sentence}")
                 st.write(f"**Avg. Keyword Density Score:** {row['Avg. Keyword Density Score']}")
                 
-                st.write("----")
-                st.subheader("Analysis Results (DataFrame)")
-                st.dataframe(formatted_df, height=400)
+            st.write("----")
+            st.subheader("Analysis Results (DataFrame)")
+            st.dataframe(formatted_df, height=400)
 
 
     # Sidebar (Hamburger Menu)
