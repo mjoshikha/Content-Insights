@@ -312,7 +312,7 @@ def main():
                 st.write(f"**Word Recommendation for Meta Title:** {', '.join(row['Word Recommendation for Meta Title'])}")
                 st.write(f"**Readability Score:** {row['Readability Score']}")
                 st.write("**Hard-to-read Sentences:**")
-                for i, sentence in enumerate(row['Hard-to-read Sentences'][:10]):  # Display only top 10 hard-to-read sentences
+                for i, sentence in enumerate(row['Hard-to-read Sentences'][:20]):  # Display only top 10 hard-to-read sentences
                     st.write(f"{i+1}. {sentence}")
                 st.write(f"**Avg. Keyword Density Score:** {row['Avg. Keyword Density Score']}")
         st.dataframe(formatted_df, height=400)
