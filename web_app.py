@@ -303,7 +303,7 @@ def main():
 
             # Display detailed explanations for each feature in dropdowns
             for index, row in df.iterrows():
-                st.subheader("URL: {row['URL']}")
+                st.subheader(f"URL: {row['URL']}")
                 st.write(f"**Content Quality Score:** {row['Content Quality Score']}")
                 st.write(f"**Relevance Score:** {row['Relevance Score']}")
                 st.write(f"**Word Recommendation for Meta Title:** {', '.join(row['Word Recommendation for Meta Title'])}")
