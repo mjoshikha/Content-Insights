@@ -100,13 +100,15 @@ def check_keyword_density(meta_keywords, page_content):
     page_content_lower = page_content.lower()
     keyword_counts = {keyword: page_content_lower.count(keyword) for keyword in meta_keywords}
     total_words = len(page_content_lower.split())
-    keyword_density = {keyword: round((count / total_words) * 100, 2) for keyword, count in keyword_counts.items()}
+    keyword_density = {}
+    for keyword, count in keyword_counts.items():
+        density = (count / total_words) * 100
+        keyword_density[keyword] = round(density, 2)
     sorted_keyword_density = sorted(keyword_density.items(), key=lambda x: x[1], reverse=True)
     
     # Calculate overall score out of 10
     overall_score = sum(keyword_density.values()) / (len(keyword_density))
     return sorted_keyword_density, overall_score
-
 
 def check_word_presence(meta_keywords, meta_title, meta_description, page_content):
     meta_keywords1 = [phrase.strip().lower() for phrase in meta_keywords.split(',')]
@@ -298,25 +300,21 @@ def main():
         with st.spinner("Analyzing content..."):
             df = analyze_content(urls)
             formatted_df = format_dataframe(df)
-    
-            # Create a selectbox for selecting URLs
-            selected_url = st.selectbox("Select URL", df['URL'])
-    
-            # Display detailed explanations for the selected URL
-            selected_row = df[df['URL'] == selected_url].iloc[0]
-            st.subheader(f"URL: {selected_row['URL']}")
-            st.write(f"**Content Quality Score:** {selected_row['Content Quality Score']}")
-            st.write(f"**Relevance Score:** {selected_row['Relevance Score']}")
-            st.write(f"**Word Recommendation for Meta Title:** {', '.join(selected_row['Word Recommendation for Meta Title'])}")
-            st.write(f"**Readability Score:** {selected_row['Readability Score']}")
-            st.write(f"**Hard-to-read Sentences:**")
-            for i, sentence in enumerate(selected_row['Hard-to-read Sentences'][:10]):  # Display only top 10 hard-to-read sentences
-                st.write(f"{i+1}. {sentence}")
-            st.write(f"**Avg. Keyword Density Score:** {selected_row['Avg. Keyword Density Score']}")
-    
-            st.write("----")
-            st.subheader("Analysis Results (DataFrame)")
-            st.dataframe(formatted_df, height=400)
+        
+        st.subheader("Analysis Results")
+        if len(formatted_df) == 1:  # Check if only one URL is analyzed
+            if st.button("Show Details", help="Click to show detailed analysis"):
+                row = df.iloc[0]  # Get the first row of the DataFrame
+                st.write(f"**Content Quality Score:** {row['Content Quality Score']}")
+                st.write(f"**Relevance Score:** {row['Relevance Score']}")
+                st.write(f"**Word Recommendation for Meta Title:** {', '.join(row['Word Recommendation for Meta Title'])}")
+                st.write(f"**Readability Score:** {row['Readability Score']}")
+                st.write("**Hard-to-read Sentences:**")
+                for i, sentence in enumerate(row['Hard-to-read Sentences'][:10]):  # Display only top 10 hard-to-read sentences
+                    st.write(f"{i+1}. {sentence}")
+                st.write(f"**Avg. Keyword Density Score:** {row['Avg. Keyword Density Score']}")
+        st.dataframe(formatted_df, height=400)
+
 
 
     # Sidebar (Hamburger Menu)
