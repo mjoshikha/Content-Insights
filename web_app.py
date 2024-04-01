@@ -306,19 +306,19 @@ def main():
             df = analyze_content(urls)
             
         
-        st.subheader("Analysis Results")
-        if len(df) == 1:  # Check if only one URL is analyzed
-                row = df.iloc[0]  # Get the first row of the DataFrame
-                st.write(f"**Content Quality Score:** {row['Content Quality Score']}")
-                st.write(f"**Relevance Score:** {row['Relevance Score']}")
-                st.write(f"**Word Recommendation for Meta Title:** {', '.join(row['Word Recommendation for Meta Title'])}")
-                st.write(f"**Readability Score:** {row['Readability Score']}")
-                st.write("**Hard-to-read Sentences:**")
-                for i, (sentence, _) in enumerate(row['Hard-to-read Sentences'][:20]):  
-                    st.write(f"{i+1}. {sentence}")
-                st.write(f"**Avg. Keyword Density Score:** {row['Avg. Keyword Density Score']}")
-        formatted_df = format_dataframe(df)
-        st.dataframe(formatted_df, height=400)
+            st.subheader("Analysis Results")
+            if len(df) == 1:  # Check if only one URL is analyzed
+                    row = df.iloc[0]  # Get the first row of the DataFrame
+                    st.write(f"**Content Quality Score:** {row['Content Quality Score']}")
+                    st.write(f"**Relevance Score:** {row['Relevance Score']}")
+                    st.write(f"**Word Recommendation for Meta Title:** {', '.join(row['Word Recommendation for Meta Title'])}")
+                    st.write(f"**Readability Score:** {row['Readability Score']}")
+                    st.write("**Hard-to-read Sentences:**")
+                    for i, (sentence, _) in enumerate(row['Hard-to-read Sentences'][:20]):  
+                        st.write(f"{i+1}. {sentence}")
+                    st.write(f"**Avg. Keyword Density Score:** {row['Avg. Keyword Density Score']}")
+            formatted_df = format_dataframe(df)
+            st.dataframe(formatted_df, height=400)
 
 
 
