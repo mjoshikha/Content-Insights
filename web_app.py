@@ -302,7 +302,7 @@ def main():
             formatted_df = format_dataframe(df)
         
         st.subheader("Analysis Results")
-        if len(formatted_df) == 1:  # Check if only one URL is analyzed
+        if len(df) == 1:  # Check if only one URL is analyzed
             if st.button("Show Details", help="Click to show detailed analysis"):
                 row = df.iloc[0]  # Get the first row of the DataFrame
                 st.write(f"**Content Quality Score:** {row['Content Quality Score']}")
