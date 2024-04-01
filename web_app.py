@@ -9,6 +9,10 @@ import re
 import nltk  
 # Download nltk data for sentence tokenization
 nltk.download('punkt')
+
+def calculate_readability_score(page_content):
+    return textstat.flesch_reading_ease(page_content)
+
 def check_relevance_score_with_keywords(meta_description, meta_title, meta_keywords, page_content):
     vectorizer = TfidfVectorizer(stop_words='english')
     tfidf_matrix = vectorizer.fit_transform([meta_description, meta_title, meta_keywords, page_content])
@@ -24,13 +28,11 @@ def check_relevance_score_with_keywords(meta_description, meta_title, meta_keywo
     )
     relevance_score = (relevance_score * 10).round(2)
 
-    readability_score = textstat.flesch_reading_ease(page_content)
-
     feature_names = vectorizer.get_feature_names()
     word_scores = list(feature_names)
     sorted_word_scores = sorted(word_scores)[:20]
 
-    return relevance_score, sorted_word_scores, readability_score
+    return relevance_score, sorted_word_scores
 
 def extract_content_with_headers(url):
     
@@ -170,8 +172,9 @@ def analyze_content(urls):
         # Check if any of the metadata variables are None
         if meta_title is None or meta_description is None or meta_keywords is None:
             continue
+        readability_score = calculate_readability_score(content)
+        relevance_score, sorted_word_scores = check_relevance_score_with_keywords(meta_description, meta_title, meta_keywords, content)
         
-        relevance_score, sorted_word_scores, readability_score = check_relevance_score_with_keywords(meta_description, meta_title, meta_keywords, content)
         hard_to_read_sentences = detect_hard_to_read_sentences(content)
         keyword_density, overall_keyword_density_score = check_keyword_density(meta_keywords, content)
         word_presence_check = check_word_presence(meta_keywords, meta_title, meta_description, content)
