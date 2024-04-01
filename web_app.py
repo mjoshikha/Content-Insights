@@ -330,4 +330,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-If I enter more than 1 url, I want the df to be shown. If i Enter one url, I want the output explained in detail and not in a df
