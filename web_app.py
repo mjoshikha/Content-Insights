@@ -304,7 +304,9 @@ def main():
 
         with st.spinner("Analyzing content..."):
             df = analyze_content(urls)
-            
+            formatted_df = format_dataframe(df)
+            st.dataframe(formatted_df, height=400)
+
         
             st.subheader("Analysis Results")
             if len(df) == 1:  # Check if only one URL is analyzed
@@ -317,8 +319,6 @@ def main():
                     for i, (sentence, _) in enumerate(row['Hard-to-read Sentences'][:20]):  
                         st.write(f"{i+1}. {sentence}")
                     st.write(f"**Avg. Keyword Density Score:** {row['Avg. Keyword Density Score']}")
-            formatted_df = format_dataframe(df)
-            st.dataframe(formatted_df, height=400)
 
 
 
