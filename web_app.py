@@ -301,15 +301,18 @@ def main():
 
             # Display detailed explanations for each feature in dropdowns
             for index, row in df.iterrows():
-                st.subheader(f"URL: {row['URL']}")
-                st.write(f"**Content Quality Score:** {row['Content Quality Score']}")
-                st.write(f"**Relevance Score:** {row['Relevance Score']}")
-                st.write(f"**Word Recommendation for Meta Title:** {', '.join(row['Word Recommendation for Meta Title'])}")
-                st.write(f"**Readability Score:** {row['Readability Score']}")
-                st.write(f"**Hard-to-read Sentences:**")
-                for i, sentence in enumerate(row['Hard-to-read Sentences'][:10]):  # Display only top 10 hard-to-read sentences
-                    st.write(f"{i+1}. {sentence}")
-                st.write(f"**Avg. Keyword Density Score:** {row['Avg. Keyword Density Score']}")
+                url_name = row['URL']
+                selected_url = st.selectbox(f"URL: {url_name}", [url_name])
+                
+                if selected_url == url_name:
+                    st.write(f"**Content Quality Score:** {row['Content Quality Score']}")
+                    st.write(f"**Relevance Score:** {row['Relevance Score']}")
+                    st.write(f"**Word Recommendation for Meta Title:** {', '.join(row['Word Recommendation for Meta Title'])}")
+                    st.write(f"**Readability Score:** {row['Readability Score']}")
+                    st.write(f"**Hard-to-read Sentences:**")
+                    for i, sentence in enumerate(row['Hard-to-read Sentences'][:10]):  # Display only top 10 hard-to-read sentences
+                        st.write(f"{i+1}. {sentence}")
+                    st.write(f"**Avg. Keyword Density Score:** {row['Avg. Keyword Density Score']}")
                 
             st.write("----")
             st.subheader("Analysis Results (DataFrame)")
