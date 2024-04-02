@@ -341,7 +341,7 @@ def main():
             st.write("**Each Keyword Density Score:**")
             st.write("The following are the keyword density scores for each keyword present in the meta keywords.")
             for keyword_density_score in row['Each Keyword Density Score']:
-                st.write(f"- {keyword_density_score[0]}: {keyword_density_score[1]}")
+                st.write(keyword_density_score)
             
             st.write("**Word Presence Check Meta Title:**")
             st.write("The following are the words present in the meta title but not in the meta description or content. Consider adding them to the Meta Description.")
