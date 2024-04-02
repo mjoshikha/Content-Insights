@@ -315,10 +315,14 @@ def main():
     )
         
     # Header
-    st.header("Welcome to SEO NEXUS - Content Insights")
+    st.header("📊 SEO NEXUS - Content Insights")
     st.write("Get insights into your content's SEO performance")
 
-    urls_input = st.text_area("Enter URLs (one per line)", height=150)
+    placeholder_text = "Enter URL(s) for analysis"
+    urls_input = st.text_area("Enter one URL for detailed analytics or multiple URLs for bulk analysis (one per line)", 
+                              placeholder=placeholder_text,
+                              height=150)
+
 
     if st.button("Analyze", help="Click to analyze the provided URLs"):
         urls = urls_input.split('\n')
