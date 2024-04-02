@@ -167,8 +167,8 @@ def format_dataframe(df):
 def analyze_content(urls):
     data = {'URL': [], 'Meta Title': [], 'Meta Description': [], 'Meta Keywords': [], 'Content': [], 'Content Quality Score': [],'Relevance Score': [],
             'Word Recommendation for Meta Title': [], 'Readability Score': [], 'Hard-to-read Sentences': [],
-            'Avg. Keyword Density Score': [], 'Each Keyword Density Score': [], 'Word Presence Check Meta Title': [],
-            'Word Presence Check Meta Description': [], 'Word Presence Check Content': []}
+            'Avg. Keyword Density Score': [], 'Each Keyword Density Score': [], 'Meta Keyword Presence in Meta Title': [], 'Meta Keyword Presence in Meta Description': [],'Word Presence Check Content': [], 'Word Presence Check Meta Title': [],
+            'Word Presence Check Meta Description': []}
 
     for url in urls:
         meta_title, meta_description, meta_keywords, content = extract_content_with_headers(url)
@@ -257,7 +257,7 @@ features_data = {
 
         "This column indicates words that are present in the meta title but not in the meta description or content, along with the count.",
         
-        "This column indicates words that are present in the meta description but not in the meta keywords or content, along with the count.",
+        "This column indicates words that are present in the meta description but not in the meta keywords or content, along with the count."
         
         
       
