@@ -372,7 +372,7 @@ def main():
             for word_presence in row['Meta Keyword Presence in Meta Description']:
                 st.write(f"- {word_presence}")
 
-            st.write("**Word Presence Check Content:**")
+            st.write("**Meta Keyword Presence Check Content:**")
             st.write("The following are the keywords present in the content but not in the Page Content, along with the count. Consider adding them to the Page Content ")
             for word_presence in row['Word Presence Check Content']:
                 st.write(f"- {word_presence}")
