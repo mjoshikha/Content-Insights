@@ -344,17 +344,17 @@ def main():
                 st.write(keyword_density_score)
             
             st.write("**Word Presence Check Meta Title:**")
-            st.write("The following are the words present in the meta title but not in the meta description or content. Consider adding them to the Meta Description.")
+            st.write("The following are the words present in the meta title but not in the meta description or content, along with the count. Consider adding them to the Meta Description.")
             for word_presence in row['Word Presence Check Meta Title']:
                 st.write(f"- {word_presence}")
             
             st.write("**Word Presence Check Meta Description:**")
-            st.write("The following are the words present in the meta description but not in the meta keywords or content. Consider adding them to the Meta Keywords.")
+            st.write("The following are the words present in the meta description but not in the meta keywords or content, along with the count. Consider adding them to the Meta Keywords.")
             for word_presence in row['Word Presence Check Meta Description']:
                 st.write(f"- {word_presence}")
             
             st.write("**Word Presence Check Content:**")
-            st.write("The following are the keywords present in the content but not in the Page Content. Consider adding them to the Page Content ")
+            st.write("The following are the keywords present in the content but not in the Page Content, along with the count. Consider adding them to the Page Content ")
             for word_presence in row['Word Presence Check Content']:
                 st.write(f"- {word_presence}")
     
