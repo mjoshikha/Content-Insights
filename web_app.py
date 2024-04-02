@@ -337,6 +337,24 @@ def main():
             
             st.write(f"**Avg. Keyword Density Score:** {row['Avg. Keyword Density Score']}")
             st.write("The Average Keyword Density Score indicates the average density of keywords across all keywords present in the content. Score above 2 suggest better keyword distribution.")
+            
+            st.write("**Each Keyword Density Score:**")
+            for keyword_density_score in row['Each Keyword Density Score']:
+                st.write(keyword_density_score)
+            
+            st.write("**Word Presence Check Meta Title:**")
+            for word_presence in row['Word Presence Check Meta Title']:
+                st.write(word_presence)
+            
+            st.write("**Word Presence Check Meta Description:**")
+            for word_presence in row['Word Presence Check Meta Description']:
+                st.write(word_presence)
+            
+            st.write("**Word Presence Check Content:**")
+            for word_presence in row['Word Presence Check Content']:
+                st.write(word_presence)
+
+    
         
 
 
