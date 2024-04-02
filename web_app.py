@@ -132,8 +132,12 @@ def check_word_presence(meta_keywords, meta_title, meta_description, page_conten
     num_missing_in_meta_keywords = len(missing_in_meta_keywords)
     missing_in_page_content = [phrase for phrase in meta_keywords1 if phrase not in page_content]
     num_missing_in_page_content = len(missing_in_page_content)
+    missing_in_meta_title = [phrase for phrase in meta_keywords1 if phrase not in meta_title]
+    num_missing_in_meta_title = len(missing_in_meta_title)
+    missing_in_meta_desc2 = [phrase for phrase in meta_keywords1 if phrase not in meta_description]
+    num_missing_in_meta_desc2 = len(missing_in_meta_desc2)
     return (missing_in_meta_desc, num_missing_in_meta_desc), (missing_in_meta_keywords, num_missing_in_meta_keywords), (
-        missing_in_page_content, num_missing_in_page_content)
+        missing_in_page_content, num_missing_in_page_content), (missing_in_meta_title,num_missing_in_meta_title), (missing_in_meta_desc2,num_missing_in_meta_desc2)
 
 def calculate_content_quality_score(avg_keyword_density, relevance_score, readability_score):
     keyword_density_score = 10 if avg_keyword_density > 2 else 0
@@ -185,6 +189,8 @@ def analyze_content(urls):
         word_presence_check_meta_title_str = [str(item) for item in word_presence_check[0]]
         word_presence_check_meta_description_str = [str(item) for item in word_presence_check[1]]
         word_presence_check_content_str = [str(item) for item in word_presence_check[2]]
+        meta_keyword_presence_in_meta_title = [str(item) for item in word_presence_check[3]]
+        meta_keyword_presence_in_meta_description = [str(item) for item in word_presence_check[4]]
 
         content_quality_score = calculate_content_quality_score(overall_keyword_density_score, relevance_score, readability_score)
 
@@ -200,9 +206,12 @@ def analyze_content(urls):
         data['Hard-to-read Sentences'].append(hard_to_read_sentences)
         data['Avg. Keyword Density Score'].append(overall_keyword_density_score)
         data['Each Keyword Density Score'].append(keyword_density_str)
+        data['Meta Keyword Presence in Meta Title'].append(meta_keyword_presence_in_meta_title)
+        data['Meta Keyword Presence in Meta Description'].append(meta_keyword_presence_in_meta_description)
+        data['Word Presence Check Content'].append(word_presence_check_content_str)
         data['Word Presence Check Meta Title'].append(word_presence_check_meta_title_str)
         data['Word Presence Check Meta Description'].append(word_presence_check_meta_description_str)
-        data['Word Presence Check Content'].append(word_presence_check_content_str)
+      
 
     return pd.DataFrame(data)
 
@@ -216,9 +225,11 @@ features_data = {
         "Hard-to-read Sentences",
         "Avg. Keyword Density Score",
         "Each Keyword Density Score",
+        "Meta Keyword Presence in Meta Title",
+        "Meta Keyword Presence in Meta Description",
+        "Word Presence Check Content",
         "Word Presence Check Meta Title",
-        "Word Presence Check Meta Description",
-        "Word Presence Check Content"
+        "Word Presence Check Meta Description"
     ],
     "Description": [
         "This score reflects the overall quality of the content on the webpage. It's calculated based on three factors:<br> \
@@ -237,14 +248,22 @@ features_data = {
         "The average keyword density score across all keywords present in the content. **A score above 2 is acceptable.**",
         
         "This column provides keyword density scores for each keyword present in the meta keywords.",
+
+        "This column indicates whether any of the meta keywords are present in the meta title, along with the count.",
         
+        "This column indicates whether any of the meta keywords are present in the meta description, along with the count.",
+
+        "This column indicates whether any of the meta keywords are present in the page content, along with the count.",
+
         "This column indicates words that are present in the meta title but not in the meta description or content, along with the count.",
         
         "This column indicates words that are present in the meta description but not in the meta keywords or content, along with the count.",
         
-        "This column indicates keywords present in the content but not in the meta keywords or meta title, along with the count."
+        
+      
     ]
 }
+
 
 # Create a DataFrame
 features_df = pd.DataFrame(features_data)
@@ -342,6 +361,22 @@ def main():
             st.write("The following are the keyword density scores for each keyword present in the meta keywords.")
             for keyword_density_score in row['Each Keyword Density Score']:
                 st.write(keyword_density_score)
+
+            st.write("**Meta Keyword Presence in Meta Title:**")
+            st.write("The following are the keywords present in the content but not in the Meta Title, along with the count. Consider adding them to the Page Content ")
+            for word_presence in row['Meta Keyword Presence in Meta Title']:
+                    st.write(f"- {word_presence}")
+        
+            st.write("**Meta Keyword Presence in Meta Description:**")
+            st.write("The following are the keywords present in the content but not in the Meta Description, along with the count. Consider adding them to the Page Content ")
+            for word_presence in row['Meta Keyword Presence in Meta Description']:
+                st.write(f"- {word_presence}")
+
+            st.write("**Word Presence Check Content:**")
+            st.write("The following are the keywords present in the content but not in the Page Content, along with the count. Consider adding them to the Page Content ")
+            for word_presence in row['Word Presence Check Content']:
+                st.write(f"- {word_presence}")
+                
             
             st.write("**Word Presence Check Meta Title:**")
             st.write("The following are the words present in the meta title but not in the meta description or content, along with the count. Consider adding them to the Meta Description.")
@@ -352,16 +387,7 @@ def main():
             st.write("The following are the words present in the meta description but not in the meta keywords or content, along with the count. Consider adding them to the Meta Keywords.")
             for word_presence in row['Word Presence Check Meta Description']:
                 st.write(f"- {word_presence}")
-            
-            st.write("**Word Presence Check Content:**")
-            st.write("The following are the keywords present in the content but not in the Page Content, along with the count. Consider adding them to the Page Content ")
-            for word_presence in row['Word Presence Check Content']:
-                st.write(f"- {word_presence}")
-    
-        
-
-
-    
+              
 
     # Sidebar (Hamburger Menu)
     sidebar_option = st.sidebar.selectbox(
