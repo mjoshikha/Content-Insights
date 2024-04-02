@@ -339,21 +339,24 @@ def main():
             st.write("The Average Keyword Density Score indicates the average density of keywords across all keywords present in the content. Score above 2 suggest better keyword distribution.")
             
             st.write("**Each Keyword Density Score:**")
+            st.write("The following are the keyword density scores for each keyword present in the meta keywords.")
             for keyword_density_score in row['Each Keyword Density Score']:
-                st.write(keyword_density_score)
+                st.write(f"- {keyword_density_score[0]}: {keyword_density_score[1]}")
             
             st.write("**Word Presence Check Meta Title:**")
+            st.write("The following are the words present in the meta title but not in the meta description or content. Consider adding them to the Meta Description.")
             for word_presence in row['Word Presence Check Meta Title']:
-                st.write(word_presence)
+                st.write(f"- {word_presence}")
             
             st.write("**Word Presence Check Meta Description:**")
+            st.write("The following are the words present in the meta description but not in the meta keywords or content. Consider adding them to the Meta Keywords.")
             for word_presence in row['Word Presence Check Meta Description']:
-                st.write(word_presence)
+                st.write(f"- {word_presence}")
             
             st.write("**Word Presence Check Content:**")
+            st.write("The following are the keywords present in the content but not in the Page Content. Consider adding them to the Page Content ")
             for word_presence in row['Word Presence Check Content']:
-                st.write(word_presence)
-
+                st.write(f"- {word_presence}")
     
         
 
